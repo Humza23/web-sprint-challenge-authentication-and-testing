@@ -1,7 +1,7 @@
 const { JWT_SECRET } = require('../secrets/index')
 const jwt = require('jsonwebtoken')
 
-module.exports = (req, res, next) => {
+const restricted = (req, res, next) => {
   const token = req.headers.token
   if (!token) {
     return next({ status: 401, message: 'token required'})
@@ -27,3 +27,7 @@ module.exports = (req, res, next) => {
       the response body should include a string exactly as follows: "token invalid".
   */
 };
+
+module.exports = {
+  restricted
+}
