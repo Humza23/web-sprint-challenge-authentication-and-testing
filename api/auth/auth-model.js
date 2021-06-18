@@ -1,6 +1,5 @@
 const db = require('../../data/dbConfig')
 
-
 function findById(id) {
     return db('users').select('*').where({ id }).first();
 }
@@ -10,10 +9,9 @@ function findBy(filter) {
 }
 
 async function add(user) {
-    const [id] = await db('users').insert(user, 'id');
+    const [id] = await db('users').insert(user);
     return findById(id);
 }
-
 
 module.exports = {
     add,
